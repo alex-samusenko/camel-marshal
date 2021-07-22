@@ -10,6 +10,6 @@ import java.util.Date;
 public class ItemValue {
     public String answerstr;
     public double answernumber;
-    public Date answerdate;
+    public String answerdate;
     public String answercode;
 }
