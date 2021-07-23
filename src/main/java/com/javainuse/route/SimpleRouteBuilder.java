@@ -23,7 +23,7 @@ public class SimpleRouteBuilder extends RouteBuilder {
 		xmlDataFormat.setContext(ctx);
 
 		// JSON Data Format
-		JacksonDataFormat jsonDataFormat = new JacksonDataFormat(TtnList.class);
+		JacksonDataFormat jsonDataFormat = new JacksonDataFormat();
 
 		from("file:C:/inputFolder?charset=utf-8")
 			.doTry()
@@ -47,10 +47,7 @@ public class SimpleRouteBuilder extends RouteBuilder {
 							else if (item.topiccode.equals("returninvoicenumber")) {
 								if (ttnNum != null && ttnDate != null) {
 									if (ttnDoc == null) {
-										ttnDoc = new TtnDoc();
-										ttnDoc.num = ttnNum;
-										ttnDoc.date = ttnDate;
-										ttnDoc.type = 101;
+										ttnDoc = new TtnDoc(ttnNum, ttnDate, 101);
 										ttnList.ttnDocs.add(ttnDoc);
 									}
 									ttnDoc.invoices.add(new Invoice(item.SKUcode));
